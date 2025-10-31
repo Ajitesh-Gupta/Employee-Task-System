@@ -35,16 +35,18 @@ mvn quarkus:dev
 ```
 
 ### 4. Test
-Visit: http://localhost:8080/hello
+Visit: http://localhost:8080/q/swagger-ui
 
 ### 5. API Docs
 - Swagger UI: http://localhost:8080/q/swagger-ui
-- OpenAPI spec: http://localhost:8080/openapi
+- OpenAPI spec: http://localhost:8080/q/openapi
 
 ## 📚 Example API Endpoints
-- `GET /employees` — List all employees
-- `POST /tasks` — Create a new task
-- `GET /departments` — List all departments
+- `GET /api/employees` — List all employees
+- `POST /api/tasks` — Create a new task
+- `GET /api/departments` — List all departments
+- `GET /api/dashboard/stats` — Get overall statistics
+- `GET /api/tasks/overdue` — Get overdue tasks
 
 ## ❓ Troubleshooting
 - If the database fails to start, ensure Docker is running and ports are available.

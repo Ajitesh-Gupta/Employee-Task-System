@@ -72,7 +72,11 @@ public class TaskService {
             throw new WebApplicationException("Task not found", 404);
         }
 
-        t.setStatus(status);
+        t.setStatus(status);    
+        if (status == TaskStatus.DONE && t.completedAt == null) {
+            t.completedAt = LocalDateTime.now();
+        }
+        
         t.persist();
         return TaskDTO.fromEntity(t);
     }

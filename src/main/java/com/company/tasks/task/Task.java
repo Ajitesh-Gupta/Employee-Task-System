@@ -49,7 +49,8 @@ public class Task extends PanacheEntity {
     public enum TaskStatus {
         TODO,
         IN_PROGRESS,
-        DONE
+        DONE,
+        CANCELLED
     }
 
     public enum TaskPriority {

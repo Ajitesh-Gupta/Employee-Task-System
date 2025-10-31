@@ -13,7 +13,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/dashboard")
+@Path("/api/dashboard")
 @Produces(MediaType.APPLICATION_JSON)
 public class DashboardResource {
 
@@ -25,9 +25,14 @@ public class DashboardResource {
 	public Map<String, Object> getStats() {
 		Map<String, Long> statusCounts = dashboard.getTaskCountByStatus();
 		Map<String, Object> completionMetrics = dashboard.getTaskCompletionMetrics();
+		long totalEmployees = dashboard.getTotalEmployeeCount();
+		Double avgCompletionTime = dashboard.getAverageTaskCompletionTime();
+		
 		return Map.of(
 			"statusCounts", statusCounts,
-			"completionMetrics", completionMetrics
+			"completionMetrics", completionMetrics,
+			"totalEmployees", totalEmployees,
+			"averageCompletionTimeHours", avgCompletionTime != null ? avgCompletionTime : 0.0
 		);
 	}
 

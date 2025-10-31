@@ -17,7 +17,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/employees")
+@Path("/api/employees")
 public class EmployeeResource {
 
     @Inject
@@ -28,7 +28,7 @@ public class EmployeeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createEmployee(@Valid EmployeeDTO dto) {
         EmployeeDTO created = service.create(dto);
-        return Response.created(URI.create("/employees/" + created.getId())).entity(created).build();
+        return Response.created(URI.create("/api/employees/" + created.getId())).entity(created).build();
     }
 
     @GET

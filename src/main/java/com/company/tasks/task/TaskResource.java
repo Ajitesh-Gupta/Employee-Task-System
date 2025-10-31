@@ -20,7 +20,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/tasks")
+@Path("/api/tasks")
 public class TaskResource {
 
     @Inject
@@ -31,7 +31,7 @@ public class TaskResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createTask(@Valid TaskDTO dto) {
         TaskDTO created = service.create(dto);
-        return Response.created(URI.create("/tasks/" + created.getId())).entity(created).build();
+        return Response.created(URI.create("/api/tasks/" + created.getId())).entity(created).build();
     }
 
     @GET

@@ -82,6 +82,21 @@ public class EmployeeService {
 
 	@Transactional
 	public boolean delete(Long id) {
+		Employee employee = Employee.findById(id);
+		if (employee == null) {
+			return false;
+		}
+		
+		long activeTasks = Task.count("assignedTo = ?1 and status not in (?2, ?3)", 
+			employee, Task.TaskStatus.DONE, Task.TaskStatus.CANCELLED);
+		
+		if (activeTasks > 0) {
+			throw new WebApplicationException(
+				"Cannot delete employee with " + activeTasks + " active task(s). Please complete or cancel tasks first.", 
+				400
+			);
+		}
+		
 		return Employee.deleteById(id);
 	}
 

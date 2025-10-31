@@ -13,7 +13,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/departments")
+@Path("/api/departments")
 public class DepartmentResource {
 
     @Inject
@@ -24,7 +24,7 @@ public class DepartmentResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createDepartment(Department d) {
         Department created = service.create(d);
-        return Response.created(URI.create("/departments/" + created.id)).entity(created).build();
+        return Response.created(URI.create("/api/departments/" + created.id)).entity(created).build();
     }
 
     @GET
