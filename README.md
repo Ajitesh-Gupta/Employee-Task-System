@@ -48,9 +48,5 @@ Visit: http://localhost:8080/q/swagger-ui
 - `GET /api/dashboard/stats` — Get overall statistics
 - `GET /api/tasks/overdue` — Get overdue tasks
 
-## ❓ Troubleshooting
-- If the database fails to start, ensure Docker is running and ports are available.
-- For build errors, check Java and Maven versions.
-
 ## 📄 License
 This project is licensed under the MIT License.
