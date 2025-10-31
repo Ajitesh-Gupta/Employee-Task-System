@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.company.tasks.employee.Employee;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,9 +30,11 @@ public class Department extends PanacheEntity {
     public String description;
 
     @OneToOne
+    @JsonIgnore
     public Employee head;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     public List<Employee> employees = new ArrayList<>();
 
     @Column(name = "created_at")

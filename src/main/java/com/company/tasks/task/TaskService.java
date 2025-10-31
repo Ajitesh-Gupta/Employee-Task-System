@@ -53,7 +53,12 @@ public class TaskService {
         if (dto.getDescription() != null) t.setDescription(dto.getDescription());
         if (dto.getStatus() != null) t.setStatus(dto.getStatus());
         if (dto.getPriority() != null) t.setPriority(dto.getPriority());
-        if (dto.getAssignedEmployee() != null) t.setAssignedEmployee(dto.getAssignedEmployee());
+        if (dto.getAssignedEmployeeId() != null) {
+            Employee employee = Employee.findById(dto.getAssignedEmployeeId());
+            if (employee != null) {
+                t.setAssignedEmployee(employee);
+            }
+        }
         if (dto.getDueDate() != null) t.setDueDate(dto.getDueDate());
 
         t.persist();

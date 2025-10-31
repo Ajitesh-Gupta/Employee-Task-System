@@ -22,15 +22,15 @@ public class DepartmentResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createDepartment(Department d) {
-        Department created = service.create(d);
-        return Response.created(URI.create("/api/departments/" + created.id)).entity(created).build();
+    public Response createDepartment(DepartmentDTO dto) {
+        DepartmentDTO created = service.create(dto);
+        return Response.created(URI.create("/api/departments/" + created.getId())).entity(created).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllDepartments() {
-        List<Department> deps = service.listAll();
+        List<DepartmentDTO> deps = service.listAll();
         return Response.ok(deps).build();
     }
 

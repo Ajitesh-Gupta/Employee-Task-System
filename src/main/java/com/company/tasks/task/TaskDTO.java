@@ -2,7 +2,6 @@ package com.company.tasks.task;
 
 import java.time.LocalDateTime;
 
-import com.company.tasks.employee.Employee;
 import com.company.tasks.task.Task.TaskPriority;
 import com.company.tasks.task.Task.TaskStatus;
 
@@ -24,7 +23,7 @@ public class TaskDTO {
 
     private TaskPriority priority;
 
-    private Employee assignedEmployee;
+    private Long assignedEmployeeId;
 
     private LocalDateTime dueDate;
     
@@ -65,11 +64,11 @@ public class TaskDTO {
         this.priority = priority;
     }
 
-    public Employee getAssignedEmployee() {
-        return assignedEmployee;
+    public Long getAssignedEmployeeId() {
+        return assignedEmployeeId;
     }
-    public void setAssignedEmployee(Employee assignedEmployee) {
-        this.assignedEmployee = assignedEmployee;
+    public void setAssignedEmployeeId(Long assignedEmployeeId) {
+        this.assignedEmployeeId = assignedEmployeeId;
     }
 
     public LocalDateTime getDueDate() {
@@ -94,8 +93,11 @@ public class TaskDTO {
         dto.setDescription(t.getDescription());
         dto.setStatus(t.getStatus());
         dto.setPriority(t.getPriority());
-        dto.setAssignedEmployee(t.getAssignedEmployee());
+        if (t.getAssignedEmployee() != null) {
+            dto.setAssignedEmployeeId(t.getAssignedEmployee().getId());
+        }
         dto.setDueDate(t.getDueDate());
+        dto.setCompletedAt(t.getCompletedAt());
         return dto;
     }
 
@@ -105,7 +107,6 @@ public class TaskDTO {
         t.setDescription(this.description);
         t.setStatus(this.status);
         t.setPriority(this.priority);
-        t.setAssignedEmployee(this.assignedEmployee);
         t.setDueDate(this.dueDate);
         return t;
     }
