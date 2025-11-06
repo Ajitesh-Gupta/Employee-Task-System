@@ -69,7 +69,7 @@ public class EmployeeDTO {
 	}
 
 	// Mapping helpers
-    //Used when fetching data from the database
+    // Used when fetching data from the database
 	public static EmployeeDTO fromEntity(Employee e) {
 		if (e == null) return null;
 		EmployeeDTO dto = new EmployeeDTO();
@@ -82,12 +82,11 @@ public class EmployeeDTO {
 		return dto;
 	}
 
-    //Used when creating or updating data into the database
+    // Used when creating or updating data into the database
 	public Employee toEntity() {
 		Employee e = new Employee();
 		e.setName(this.name);
 		e.setEmail(this.email);
-		// Department will be set by the service layer
 		e.setPosition(this.position);
 		e.setJoindate(this.joindate);
 		return e;

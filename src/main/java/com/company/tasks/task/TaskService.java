@@ -30,7 +30,6 @@ public class TaskService {
     @Transactional
     public TaskDTO create(TaskDTO dto) {
         Task t = dto.toEntity();
-        //Due date must be in the future
         if (t.getDueDate() != null && !t.getDueDate().isAfter(java.time.LocalDateTime.now())) {
             throw new WebApplicationException("Due date must be in the future", 400);
         }

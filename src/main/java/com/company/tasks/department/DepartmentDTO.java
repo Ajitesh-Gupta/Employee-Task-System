@@ -21,7 +21,6 @@ public class DepartmentDTO {
 
     private LocalDateTime createdAt;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -64,7 +63,6 @@ public class DepartmentDTO {
         this.createdAt = createdAt;
     }
 
-    // Mapping helpers
     public static DepartmentDTO fromEntity(Department d) {
         if (d == null) return null;
         DepartmentDTO dto = new DepartmentDTO();
@@ -83,7 +81,6 @@ public class DepartmentDTO {
         Department d = new Department();
         d.setName(this.name);
         d.setDescription(this.description);
-        // Head will be set by the service layer
         return d;
     }
 }

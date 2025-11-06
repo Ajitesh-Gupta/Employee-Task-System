@@ -14,6 +14,16 @@ import jakarta.ws.rs.WebApplicationException;
 @ApplicationScoped
 public class DepartmentService {
 
+    @Transactional
+    public DepartmentDTO create(DepartmentDTO dto) {
+        Department d = dto.toEntity();
+        d.persist();
+        if (!d.isPersistent()) {
+            throw new WebApplicationException("Could not create department", 400);
+        }
+        return DepartmentDTO.fromEntity(d);
+    }
+
     public List<DepartmentDTO> listAll() {
         return Department.<Department>listAll().stream()
             .map(DepartmentDTO::fromEntity)
@@ -23,16 +33,6 @@ public class DepartmentService {
     public Optional<DepartmentDTO> findById(Long id) {
         return Department.<Department>findByIdOptional(id)
             .map(DepartmentDTO::fromEntity);
-    }
-
-    @Transactional
-    public DepartmentDTO create(DepartmentDTO dto) {
-        Department d = dto.toEntity();
-        d.persist();
-        if (!d.isPersistent()) {
-            throw new WebApplicationException("Could not create department", 400);
-        }
-        return DepartmentDTO.fromEntity(d);
     }
 
     public List<Employee> listEmployeesByDepartment(Long id) {
